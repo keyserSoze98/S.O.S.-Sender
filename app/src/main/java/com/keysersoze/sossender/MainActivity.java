@@ -3,6 +3,7 @@ package com.keysersoze.sossender;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -11,6 +12,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button sosButton;
     private EditText contactEditText;
     private String defaultContact;
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sosButton.setOnClickListener(this);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -52,17 +57,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private boolean isValidPhoneNumber(String phoneNumber) {
-        // Remove all non-numeric characters from the phone number
-        phoneNumber = phoneNumber.replaceAll("[^\\d]", "");
-
-        // Check if the resulting phone number is exactly 10 digits
-        return (phoneNumber.length() == 10);
-    }
-
 
     private void sendSOS() {
         String contact = contactEditText.getText().toString();
+        try {
+            validatePhoneNumber(contact);
+            Log.d(TAG, "Phone number is valid.");
+        } catch (IllegalArgumentException e) {
+            Log.e(TAG, "Error: " + e.getMessage());
+            Toast.makeText(this, "Please set a 10-digit contact number", Toast.LENGTH_LONG).show();
+            return;
+        }
         if (TextUtils.isEmpty(contact)) {
             Toast.makeText(this, "Please set a default contact number", Toast.LENGTH_LONG).show();
             return;
@@ -94,5 +99,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         smsManager.sendTextMessage(contact, null, message, null, null);
 
         Toast.makeText(this, "SOS message sent to " + contact, Toast.LENGTH_LONG).show();
+    }
+
+    public static void validatePhoneNumber(String phoneNumber) {
+        String regex = "^\\d{10}$";
+        if (!phoneNumber.matches(regex)) {
+            throw new IllegalArgumentException("Invalid phone number. Please enter a 10-digit number.");
+        }
     }
 }
