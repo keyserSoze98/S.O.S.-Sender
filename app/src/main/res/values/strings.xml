@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">S.O.S. Sender</string>
-    <string name="default_contact">Please enter a default contact number</string>
+    <string name="default_contact">Please select a default contact</string>
     <string name="send_sos">Send S.O.S. message</string>
 </resources>

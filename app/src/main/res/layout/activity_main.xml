@@ -7,14 +7,34 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/edittext_contact"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/default_contact"
-        android:inputType="phone"
-        android:layout_margin="18dp"
-        tools:ignore="Autofill" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/edittext_contact"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/default_contact"
+            android:inputType="none"
+            android:layout_margin="10dp"
+            android:padding="7dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:background="@drawable/edittext_border"
+            android:gravity="center_vertical"
+            tools:ignore="Autofill" />
+
+        <ImageView
+            android:id="@+id/image_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_picker"
+            android:padding="12dp"
+            android:contentDescription="Contact Picker"/>
+    </RelativeLayout>
 
     <Button
         android:id="@+id/button_sos"
