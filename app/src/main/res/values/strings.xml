@@ -1,5 +1,18 @@
 <resources>
     <string name="app_name">S.O.S. Sender</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
     <string name="default_contact">Please select a default contact</string>
     <string name="send_sos">Send S.O.S. message</string>
+    <string name="contact_picker">Contact Picker</string>
+    <string name="home">Home</string>
+    <string name="exit">Exit</string>
+    <string name="shortcut_text">Create Tap &amp; Send S.O.S. shortcut</string>
+    <string name="shortcut_label">Tap to Send S.O.S</string>
+    <string name="about">About</string>
+    <string name="about_text">Introducing the SOS Sender app, crafted by Keyser Soze.
+        \n\nSeamlessly dispatch your precise location to a pre-selected contact from your
+        phonebook in moments of distress. \n\nOur latest innovation introduces a swift Tap
+        and send SOS functionality, enabling users to create a shortcut for instant emergency
+        dispatch with a single tap.\n\nVersion: 2.0.0</string>
 </resources>

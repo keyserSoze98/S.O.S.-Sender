@@ -1,51 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:id="@+id/drawerLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
     tools:context=".MainActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/edittext_contact"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="@string/default_contact"
-            android:inputType="none"
-            android:layout_margin="10dp"
-            android:padding="7dp"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:background="@drawable/edittext_border"
-            android:gravity="center_vertical"
-            tools:ignore="Autofill" />
-
-        <ImageView
-            android:id="@+id/image_picker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_picker"
-            android:padding="12dp"
-            android:contentDescription="Contact Picker"/>
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/button_sos"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:backgroundTint="#FF0000"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="40sp"
-        android:text="@string/send_sos"
-        android:padding="18dp"
-        android:layout_margin="18dp"/>
+        android:orientation="vertical" >
 
-</LinearLayout>
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/edittext_contact"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="@string/default_contact"
+                android:inputType="none"
+                android:layout_margin="15dp"
+                android:padding="7dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:background="@drawable/edittext_border"
+                android:gravity="center_vertical"
+                tools:ignore="Autofill" />
+
+            <ImageView
+                android:id="@+id/image_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_picker"
+                android:padding="12dp"
+                android:contentDescription="@string/contact_picker"/>
+
+        </RelativeLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_sos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:backgroundTint="#FF0000"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="40sp"
+            android:text="@string/send_sos"
+            android:padding="18dp"
+            android:layout_margin="10dp" />
+
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/menu"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true" />
+
+</androidx.drawerlayout.widget.DrawerLayout>
