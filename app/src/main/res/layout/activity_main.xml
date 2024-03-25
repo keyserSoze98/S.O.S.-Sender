@@ -21,13 +21,13 @@
             <TextView
                 android:id="@+id/edittext_contact"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="80dp"
                 android:hint="@string/default_contact"
                 android:inputType="none"
                 android:layout_margin="15dp"
                 android:padding="7dp"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:background="@drawable/edittext_border"
                 android:gravity="center_vertical"
                 tools:ignore="Autofill" />
@@ -40,6 +40,7 @@
                 android:layout_centerVertical="true"
                 android:src="@drawable/ic_picker"
                 android:padding="12dp"
+                android:layout_marginEnd="10dp"
                 android:contentDescription="@string/contact_picker"/>
 
         </RelativeLayout>

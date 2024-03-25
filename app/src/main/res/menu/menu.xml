@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/createShortcut"
-        android:icon="@drawable/shortcut"
+        android:icon="@drawable/sos_tap"
         android:title="@string/shortcut_text" />
 
     <item
