@@ -26,6 +26,10 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
 import com.keysersoze.sossender.databinding.ActivityMainBinding
 import kotlin.system.exitProcess
 
@@ -48,6 +52,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
+
+        MobileAds.initialize(this) {}
+
+        initializeAds()
 
         val permissions = arrayOf(
             Manifest.permission.SEND_SMS,
@@ -80,6 +88,35 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if (intent.action == ACTION_SEND_SOS) {
             sendSOS()
             finishAffinity()
+        }
+    }
+
+    private fun initializeAds() {
+        val adRequest = AdRequest.Builder().build()
+        viewBinding.adView.loadAd(adRequest)
+
+        viewBinding.adView.adListener = object : AdListener() {
+            override fun onAdLoaded() {
+                viewBinding.adView.visibility = View.VISIBLE
+                Log.d("AdMob", "Ad loaded successfully")
+            }
+
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                Log.e("AdMob", "Ad failed to load: ${adError.message}")
+            }
+
+            override fun onAdOpened() {
+                Log.d("AdMob", "Ad opened")
+            }
+
+            override fun onAdClicked() {
+                Log.d("AdMob", "Ad clicked")
+            }
+
+            override fun onAdClosed() {
+                viewBinding.adView.visibility = View.GONE
+                Log.d("AdMob", "Ad closed")
+            }
         }
     }
 
